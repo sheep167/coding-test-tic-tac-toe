@@ -1,0 +1,58 @@
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.ant-card {
+  border: 1px solid rgb(234, 197, 197);
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  border-radius: 0;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  height: 50px;
+  width: 50px;
+  margin-right: -1px;
+  margin-top: -1px;
+  text-align: center;
+}
+
+.square:hover {
+  background: lightgray;
+}
+
+.square-X {
+  background: rgb(165, 165, 246);
+}
+
+.square-O {
+  background: rgb(227, 156, 156);
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 12px;
+}
+
+.game-board {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 120px;
+}
