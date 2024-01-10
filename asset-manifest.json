@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/coding-test-tic-tac-toe/static/css/main.a2553ca1.css",
+    "main.js": "/coding-test-tic-tac-toe/static/js/main.f8b4fe20.js",
+    "index.html": "/coding-test-tic-tac-toe/index.html",
+    "main.a2553ca1.css.map": "/coding-test-tic-tac-toe/static/css/main.a2553ca1.css.map",
+    "main.f8b4fe20.js.map": "/coding-test-tic-tac-toe/static/js/main.f8b4fe20.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a2553ca1.css",
+    "static/js/main.f8b4fe20.js"
+  ]
+}
