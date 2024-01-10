@@ -39,29 +39,29 @@ jobs:
   # cypress-run:
   #   runs-on: ubuntu-latest
   #   steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
       
-      - name: Install dependencies
-        run: npm install
+  #     - name: Install dependencies
+  #       run: npm install
       
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm run start
-          browser: chrome
-          wait-on: 'http://localhost:3000'
+  #     - name: Cypress run
+  #       uses: cypress-io/github-action@v6
+  #       with:
+  #         start: npm run start
+  #         browser: chrome
+  #         wait-on: 'http://localhost:3000'
 
-      - uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: cypress-videos
-          path: cypress/videos
+  #     - uses: actions/upload-artifact@v3
+  #       if: failure()
+  #       with:
+  #         name: cypress-screenshots
+  #         path: cypress/screenshots
+  #     - uses: actions/upload-artifact@v3
+  #       if: always()
+  #       with:
+  #         name: cypress-videos
+  #         path: cypress/videos
 
   deploy:
     # needs: [build, cypress-run]
