@@ -64,23 +64,25 @@ jobs:
   #         path: cypress/videos
 
   deploy:
-    # Add a dependency to the build job
-    # needs: build
+    # needs: []
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-
-    # Deploy to the github-pages environment
-    env:
-      user_name: 'github-actions[bot]'
-      user_email: 'github-actions[bot]@users.noreply.github.com'
-      github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
-      repository: ${{ github.repository }}
-    # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3 # or specific "vX.X.X" version tag for this action
+        uses: actions/deploy-pages@v4
