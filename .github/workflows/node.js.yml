@@ -64,7 +64,7 @@ jobs:
           path: cypress/videos
 
   deploy:
-  - needs: [build, cypress-run]
+    needs: [build, cypress-run]
   - name: Deploy
     run: |
       git config --global user.name $user_name
