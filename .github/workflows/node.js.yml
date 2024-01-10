@@ -39,20 +39,17 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+      - uses: actions/upload-artifact@v3
+        if: failure()
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-    
-      - name: Install dependencies
-        run: npm install
-
-       - name: Cypress run
-        uses: cypress-io/github-action@v3
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v3
+        if: always()
         with:
-          browser: chrome
-          build: npm build
-          start: npm start
-          wait-on: "http://localhost:3000"
+          name: cypress-videos
+          path: cypress/videos
