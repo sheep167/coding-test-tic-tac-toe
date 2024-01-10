@@ -10,61 +10,61 @@ on:
     branches: [ "main" ]
 
 jobs:
-  # build:
+  build:
 
-  #   runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  #   strategy:
-  #     matrix:
-  #       node-version: [14.x, 16.x, 18.x]
-  #       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-  #   steps:
-  #   - uses: actions/checkout@v3
-  #   - name: Use Node.js ${{ matrix.node-version }}
-  #     uses: actions/setup-node@v3
-  #     with:
-  #       node-version: ${{ matrix.node-version }}
-  #       cache: 'npm'
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
     
-  #   - name: Install dependencies
-  #     run: npm install
+    - name: Install dependencies
+      run: npm install
 
-  #   - name: Run the tests
-  #     run: npm test
+    - name: Run the tests
+      run: npm test
 
-  #   - name: Build
-  #     run: npm run build
+    - name: Build
+      run: npm run build
 
-  # cypress-run:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       
-  #     - name: Install dependencies
-  #       run: npm install
+      - name: Install dependencies
+        run: npm install
       
-  #     - name: Cypress run
-  #       uses: cypress-io/github-action@v6
-  #       with:
-  #         start: npm run start
-  #         browser: chrome
-  #         wait-on: 'http://localhost:3000'
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run start
+          browser: chrome
+          wait-on: 'http://localhost:3000'
 
-  #     - uses: actions/upload-artifact@v3
-  #       if: failure()
-  #       with:
-  #         name: cypress-screenshots
-  #         path: cypress/screenshots
-  #     - uses: actions/upload-artifact@v3
-  #       if: always()
-  #       with:
-  #         name: cypress-videos
-  #         path: cypress/videos
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
 
   deploy:
-    # needs: [build, cypress-run]
+    needs: [build, cypress-run]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
